@@ -2650,7 +2650,8 @@ function mouseButtonClick(e)
       if (target.nodeName === "A" || target.nodeName === "EMBED" ||
 	  target.nodeName === "OBJECT" || target.nodeName === "INPUT" ||
 	  target.nodeName === "TEXTAREA" || target.nodeName === "SELECT" ||
-	  target.nodeName === "SUMMARY" || target.nodeName === "OPTION") return;
+	  target.nodeName === "SUMMARY" || target.nodeName === "OPTION" ||
+	  target.nodeName === "VIDEO" || target.nodeName === "AUDIO") return;
       target = target.parentNode;
     }
 
