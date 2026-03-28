@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WebSpatial | Let's Vision 2026</title>
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <script defer src="assets/b6plus.js"></script>
+  </head>
+  <body class="textfit">
+    <div class="progress"></div>
+
+    <section class="slide cover clear-number title-slide" id="cover">
+      <h1>WebSpatial: Building visionOS Spatial Apps with HTML/CSS Like SwiftUI + RealityKit</h1>
+      <div class="title-meta">
+        <div class="title-speaker">
+          <p class="title-name">Dexter Yang (杨扬)</p>
+          <p class="title-role">ByteDance · Creator of the Open Source WebSpatial Project</p>
+        </div>
+        <div class="title-event">
+          <p class="title-event-name">Let's Vision 2026</p>
+          <p class="title-event-city">Shanghai</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="agenda">
+      <h1>Agenda</h1>
+      <ol class="agenda-list">
+        <li>Background</li>
+        <li>Make the Web Spatial Too</li>
+        <li>WebSpatial Features</li>
+        <li>WebSpatial Philosophy</li>
+      </ol>
+    </section>
+
+    <section class="slide cover section clear-number chapter-slide" id="background">
+      <h1>Background</h1>
+    </section>
+
+    <section class="slide cover section clear-number chapter-slide long-title" id="vision-web-capabilities">
+      <h1>Existing New Web Capabilities on visionOS</h1>
+    </section>
+
+    <section class="slide media-slide compact-title" id="web-unified-rendering">
+      <h1>1. Unified Web Rendering</h1>
+      <div class="media-frame">
+        <img src="images/01.png" alt="Web unified rendering on visionOS">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        Safari/WebView 里的浏览器引擎跟 visionOS 有深度结合， 网页内容跟 visionOS 里其他原生 2D 内容一样由系统统一渲染
+      </p>
+      <p>
+        网页从独立渲染的、像素固定的贴图，变成跟现实世界物体一样可以在空间关系和注视行为动态变化的过程中保持清晰
+      </p>
+      <ol>
+        <li>系统统一合成：Web 内容进入 visionOS 的 render server + compositor 显示链路，而不是停留在传统“浏览器内部自给自足”的独立渲染模式里。</li>
+        <li>自动保证清晰：系统会依据 UI 与用户在空间中的角度和距离关系，根据用户的视野和注视位置，实时动态提升文本与矢量 UI 的可读性与锐度。</li>
+      </ol>
+    </section>
+
+    <section class="slide media-slide compact-title" id="web-natural-interaction">
+      <h1>2. Natural Web Interaction</h1>
+      <div class="media-frame">
+        <img src="images/02.png" alt="Web natural interaction on visionOS">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        Safari/WebView 里的网页内容，支持 visionOS 里的 Natural Interaction，包括间接交互（眼手交互）和直接交互（触摸），都等价于触屏设备上的交互，像触屏设备中的网页一样触发 JS 事件、兼容旧网页中基于鼠标事件/css hover。
+      </p>
+      <p>
+        区别是，visionOS 里的网页也支持眼手交互模式下的 Hover Effect，眼动注视数据是用户隐私，应用和网页都无法获取到，因此无法在用户通过眼动做「选择」的过程中，用网页代码实现自定义的 Hover Effect，没有 Hover state。
+      </p>
+      <p>
+        网页中的元素会根据规则被提前识别为可交互区域，OS 会负责在可交互区域被眼睛注视的时候显示 Hover Effect。按钮、链接、菜单、表单控件，以及带对应 ARIA role 的元素会自动获得 Hover Effect，自定义元素通常需要 <code>cursor: pointer</code> 才会被识别为可交互区域
+      </p>
+    </section>
+
+    <section class="slide media-slide compact-title" id="model-element">
+      <h1>3. Model Element</h1>
+      <div class="media-frame">
+        <img src="images/03.png" alt="Model element support in visionOS Safari">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        是 Apple 推动的新 web 标准，在 visionOS safari 里已经有比较完整的支持。
+      </p>
+      <p>
+        <code>&lt;model&gt;</code> 把 3D 模型变成 Web 的一等媒体元素，像 <code>&lt;img&gt;</code> / <code>&lt;video&gt;</code> 一样，API 沿用 <code>src</code>、<code>&lt;source&gt;</code>、fallback content、poster、autoplay、loop 这套熟悉的 HTML 媒体元素的心智。
+      </p>
+      <p>
+        在 visionOS 上不只是“投影到网页里平面画布上的贴图”，而是类似在网页里挖了一个洞口，透过洞口可以看到在「里面」立体渲染的 3D 模型，用户视角改变可以看到模型的不同角度。
+      </p>
+      <p>
+        用户还能把模型从页面里拖出来（相当于用原生的 Model Viewer 查看），在空间中像真实物体一样查看。
+      </p>
+      <p>
+        支持多个模型文件来源（比如USDZ和 GLTF），模型可以通过 entityTransform API 控制如何在容器中精确放置(朝向、缩放和位移)，支持播放和编程控制模型文件内建的关键帧动画，还可以零代码启用容器自带的原生交互（stagemode）。
+      </p>
+    </section>
+
+    <section class="slide media-slide compact-title" id="fullscreen-immersive-media">
+      <h1>4. Fullscreen API + Immersive Media</h1>
+      <div class="media-frame">
+        <img src="images/04.png" alt="Fullscreen API with immersive media">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        Apple 先把 Fullscreen API 用于 panorama 和 spatial photo 的沉浸式查看，之后又扩展到 spatial video、180°、360°、Wide FOV，以及 Apple Immersive Video。
+      </p>
+      <p>
+        这些媒体通过现有 html 元素嵌入网页，先以内联 2D 内容出现。开发者仍然使用现有的标准 <code>requestFullscreen()</code> API，不需要新的 HTML 元素和 JS API。
+      </p>
+    </section>
+
+    <section class="slide media-slide compact-title" id="spatial-browsing">
+      <h1>5. Spatial Browsing</h1>
+      <div class="media-frame">
+        <img src="images/05.png" alt="Spatial browsing in Safari on visionOS">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        visionOS Safari 会自动识别出支持 Reader mode 的文章类网页，浏览器在看这种网页时可以切换成Spatial Browsing 模式，去掉干扰元素、用空间化 UI 显示内容，对于符合条件的图像内容会呈现为 inline spatial scenes。网页还可以在 HTML 中声明 Spatial Backdrop 资源，影响 Spatial Browsing 模式下的环境背景
+      </p>
+    </section>
+
+    <section class="slide media-slide compact-title" id="webxr-natural-input">
+      <h1>6. WebXR: Natural Input (transient-pointer)</h1>
+      <div class="media-frame">
+        <img src="images/06.png" alt="WebXR natural input on visionOS">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        把 visionOS 的自然交互带进 WebXR, 开发者处理的是“交互意图和结果”，而不是眼动、手势识别和手部渲染本身。
+      </p>
+      <p>
+        WebXR 支持的交互方式原本只有控制器模式和 Hand Input 模式（需要开发者自己渲染手部，自己实现具体手势），Apple 在此基础上扩展出了 Natural Input，支持 visionOS 里无控制器的自然交互，包括间接的眼手交互和直接的手部触控，都由系统统一负责渲染手部、实现手势和判断命中，
+      </p>
+      <p>
+        inputSources 是空的，只有当用户开始手指捏合/触摸时，才会临时生成一个 XRInputSource，交互结束后这个输入源被移除。不是持续暴露的控制器(tracked-pointer)，而是一次一次出现、用完即消失的交互对象(transient-pointer)。开发者只能处理交互结果，接触不到眼动和手部运动的隐私数据
+      </p>
+    </section>
+
+    <section class="slide media-slide long-title compact-title" id="why-not-enough">
+      <h1>Why these new web capabilities are not enough</h1>
+      <div class="media-frame">
+        <img src="images/07.png" alt="Why the current web capabilities are not enough">
+      </div>
+    </section>
+
+    <section class="slide media-slide long-title compact-title" id="new-native-paradigm">
+      <h1>The New Paradigm Introduced by visionOS + SwiftUI + RealityKit</h1>
+      <div class="media-frame">
+        <img src="images/08.png" alt="New paradigm introduced by visionOS, SwiftUI, and RealityKit">
+      </div>
+    </section>
+
+    <section class="slide media-slide compact-title" id="spatial-runtime">
+      <h1>1. Spatial Runtime (Shared Space / Full Space)</h1>
+      <div class="media-frame">
+        <img src="images/09.png" alt="Spatial runtime shared space and full space">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        Spatial Runtime 相当于一个所有空间应用共存的 3D 空间和共用的 3D 渲染引擎，由空间计算操作系统统一负责用底层 3D 图形 API 渲染这个 3D 空间里跨应用的、2D 和 3D 混合的内容，统一负责实现和渲染交互效果，统一负责应用内容跟空间环境的结合。相当于由操作系统来统一负责空间计算，空间应用可以自动获得这些空间计算的效果。
+      </p>
+      <p>
+        各个空间应用里需要让系统理解自己内部的 3D 内容，能把它们融合到同一个空间中，有一致的光照、遮挡关系等）。也需要让系统理解自己内部可交互的 2D 内容，能为它们渲染交互效果，比如 Hover Effect。
+      </p>
+      <p>
+        在 Shared Space 下空间应用默认获取不到眼动、手部移动、空间环境信息等隐私数据，需要切换到 Full Space 模式才允许空间应用获得人体和环境的数据实现自定义空间计算逻辑。
+      </p>
+    </section>
+
+    <section class="slide media-slide compact-title" id="spatial-scene">
+      <h1>2. Spatial Scene</h1>
+      <div class="media-frame">
+        <img src="images/10.png" alt="Spatial scene container types">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        Spatial Scene 又叫 Spatial Container，是空间计算操作系统中 Spatial Runtime 提供的基础容器，在 Shared Space 里，每个容器（包括 Window 和 Volume）都是空间中一块有边界的局部空间，在 Full Space 里，有一个特殊的容器（称作 ImmersiveSpace 或 Stage）是无边界的，对应整个空间。
+      </p>
+      <p>
+        空间应用的所有内容必须通过这些空间容器来提供，从而让 Spatial Runtime 可以统一负责实现这些容器跟空间环境的结合，统一负责这些容器之外跨应用的全局交互行为。
+      </p>
+      <p>
+        空间应用在空间场景容器创建时提供期望的初始化属性，但能否满足由 Spatial Runtime 判断，一旦空间场景容器创建完成，空间应用就无法改变这些容器的状态，它们的状态完全由 Spatial Runtime 和用户的交互决定。
+      </p>
+    </section>
+
+    <section class="slide media-slide compact-title" id="spatialized-2d-view">
+      <h1>3. Spatialized 2D View</h1>
+      <div class="media-frame">
+        <img src="images/11.png" alt="Spatialized 2D view layout">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        空间场景容器中的应用内容，沿用 2D GUI 的组件和布局系统，API 和心智模型都保持不变，在此基础上扩展了 Z 轴相关的空间化 API，让 2D View 能成为空间化 UI，可以突破「屏幕」（空间场景容器的背板）的限制，被「抬升」到「屏幕」前方的空间中做 Z 轴方向的布局，也可以在空间中旋转缩放。
+      </p>
+      <p>
+        多个 2D View 不用再被捆绑在一个有不透明背景和边框的「屏幕」上，可以分散、悬浮在空间中，更灵活充分的利用空间，把整个空间都变成软件界面环境。
+      </p>
+    </section>
+
+    <section class="slide media-slide compact-title" id="two-d-containing-three-d">
+      <h1>4. "2D Containing 3D"</h1>
+      <div class="media-frame">
+        <img src="images/12.png" alt="2D containing 3D pattern">
+      </div>
+    </section>
+
+    <section class="slide media-slide compact-title" id="spatial-gestures">
+      <h1>5. Spatial Gestures</h1>
+      <div class="media-frame">
+        <img src="images/13.png" alt="Spatial gestures">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        2D 界面分散、悬浮在空间中，3D 容器里的内容有了真实体积，都导致原有的针对 2D 平面的交互 API 不再够用，为了在整个空间中保持一致的交互体验和保护用户隐私，也不能让应用各自去获取底层眼手数据自行实现空间交互手势。
+      </p>
+      <p>
+        Spatial Runtime 统一定义和实现了一套空间手势，能跟 3D 空间中的软件 UI 和虚拟物体的不同部位交互，能在空间中任意拖拽，也提供像双手拖拉、旋转等常用的双手自然交互手势。
+      </p>
+    </section>
+
+    <section class="slide media-slide long-title compact-title" id="web-missing-paradigms">
+      <h1>Web is still missing these new paradigms</h1>
+      <div class="media-frame">
+        <img src="images/14.png" alt="The web is still missing the new spatial paradigms">
+      </div>
+    </section>
+
+    <section class="slide media-slide long-title" id="why-it-matters">
+      <h1>Why it matters: spatial computing and multimodal AI need the web</h1>
+      <div class="media-frame">
+        <img src="images/15.png" alt="Why spatial computing and multimodal AI need the web">
+      </div>
+    </section>
+
+    <section class="comment">
+      <h2>讲稿备注</h2>
+      <p>
+        下一代操作系统相比移动操作系统，更需要基于开放标准的 “免安装应用”。
+      </p>
+      <p>
+        “免安装应用” 规模巨大，而且难以编目；它们通过链接启动，按需运行，默认是一次性的，并且可以在需要时升级为已安装应用。
+      </p>
+      <p>
+        为什么：
+      </p>
+      <p>
+        客户端 AI Agent 正越来越多地自行选择 “工具”。用于 “Tool Use” 的应用类型，往往数量庞大、范围未知，而且使用频率很低。这意味着它们不适合被预装、临时安装，或在使用后继续保留在设备上。
+      </p>
+      <p>
+        在空间环境中，应用的发现与启动方式也是一样的。就像中国和日本的人们通过扫描二维码来参加活动或下单一样。
+      </p>
+      <p>桌面时代唯一的 “超级应用” - 浏览器 - 正在回归，但会以新的形式出现：</p>
+      <ul>
+        <li>ChatGPT app - 聊天框正在取代地址栏。消息流正在取代标签页。</li>
+        <li>TikTok/Snapchat camera - XR 透视视图正在取代地址栏。具有空间布局的窗口容器正在取代标签页。</li>
+      </ul>
+      <p>
+        新一代对 Agent 友好、Tool 优先的 Web 标准正在涌现，比如 MCP App、WebMCP
+      </p>
+      <p>
+        像 ChatGPT 这样的 Agentic 浏览器正在从文本界面像图形界面发展，已经支持分发和嵌入 包含 MCP-UI 的 MCP App
+      </p>
+      <p>
+        设想：Spatial + Agentic 的 OS，Home 界面不再是应用图标组成的 App Launcher，而是在空间上下文中分发 Web App 和 MCP App 的 Agent，MCP App 中的 MCP-UI 可以包含空间化 UI 的空间容器
+      </p>
+    </section>
+
+    <section class="slide media-slide long-title" id="make-the-web-spatial-too-1">
+      <p class="eyebrow">1 / 6</p>
+      <h1>Make the Web Spatial Too</h1>
+      <div class="media-frame">
+        <video src="video/app2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      </div>
+    </section>
+
+    <section class="slide media-slide long-title" id="make-the-web-spatial-too-2">
+      <p class="eyebrow">2 / 6</p>
+      <h1>Make the Web Spatial Too</h1>
+      <div class="media-frame">
+        <video src="video/app1.MP4" autoplay muted loop playsinline preload="metadata"></video>
+      </div>
+    </section>
+
+    <section class="slide media-slide long-title" id="make-the-web-spatial-too-3">
+      <p class="eyebrow">3 / 6</p>
+      <h1>Make the Web Spatial Too</h1>
+      <div class="media-frame">
+        <video src="video/demo-app1.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      </div>
+    </section>
+
+    <section class="slide media-slide long-title" id="make-the-web-spatial-too-4">
+      <p class="eyebrow">4 / 6</p>
+      <h1>Make the Web Spatial Too</h1>
+      <div class="media-frame">
+        <video src="video/demo-game1.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      </div>
+    </section>
+
+    <section class="slide media-slide long-title" id="make-the-web-spatial-too-5">
+      <p class="eyebrow">5 / 6</p>
+      <h1>Make the Web Spatial Too</h1>
+      <div class="media-frame">
+        <video src="video/demo-game2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      </div>
+    </section>
+
+    <section class="slide media-slide long-title" id="make-the-web-spatial-too-6">
+      <p class="eyebrow">6 / 6</p>
+      <h1>Make the Web Spatial Too</h1>
+      <div class="media-frame">
+        <img src="images/real-apps.png" alt="Examples of real apps built with WebSpatial">
+      </div>
+    </section>
+
+    <section class="slide media-slide long-title" id="what-is-webspatial-1">
+      <p class="eyebrow">Part 1 / 2</p>
+      <h1>What Is WebSpatial</h1>
+      <div class="media-frame">
+        <img src="images/16.png" alt="What is WebSpatial">
+      </div>
+    </section>
+
+    <section class="slide statement-slide long-title" id="what-is-webspatial-2">
+      <p class="eyebrow">Part 2 / 2</p>
+      <h1>What Is WebSpatial</h1>
+      <div class="statement-panel statement-large">
+        <p>
+          WebSpatial is a minimal extension to HTML, CSS, and DOM APIs, along
+          with a polyfill-style open source SDK. Its goal is to bring
+          spatialized UI capabilities and a "2D containing 3D" developer
+          experience into web standards and mainstream web frameworks at a
+          level equivalent to native spatial apps.
+        </p>
+        <p>
+          It allows HTML content to break free from the screen on spatial
+          computing platforms, enter real space, gain true volume, support
+          natural interaction in space, and enable flexible 3D programming,
+          without sacrificing the web's existing cross-platform reach, mental
+          model, or development workflow.
+        </p>
+        <p>
+          The goal is to let the mainstream web ecosystem and web developers
+          move seamlessly into the era of spatial computing and multimodal AI.
+        </p>
+      </div>
+    </section>
+
+    <section class="slide cover section clear-number chapter-slide" id="webspatial-features">
+      <h1>WebSpatial Features</h1>
+    </section>
+
+    <section class="slide cover section clear-number chapter-slide" id="webspatial-api">
+      <h1>WebSpatial API</h1>
+    </section>
+
+    <section class="slide feature-slide compact-title" id="api-spatial-scene">
+      <h1>1. Spatial Scene</h1>
+      <div class="feature-layout">
+        <div class="feature-copy">
+          <p class="lead">
+            The entry page of a Web App (PWA), as well as every self-owned page
+            opened in a new window, becomes a spatial scene container combined
+            with the surrounding environment, and each container can receive
+            different initial spatial settings.
+          </p>
+        </div>
+        <div class="visual-panel">
+          <div class="media-frame">
+            <img src="images/17.png" alt="WebSpatial API for spatial scenes">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide feature-slide compact-title" id="api-material-backplate">
+      <h1>2. Material Backplate</h1>
+      <div class="feature-layout">
+        <div class="feature-copy">
+          <p class="lead">
+            For flat window-style pages, the background panel can be set to a
+            native translucent material rendered dynamically with the viewing
+            angle and environment. It can also be made fully transparent with
+            no visible border, so the page's elements appear to float apart in
+            space.
+          </p>
+        </div>
+        <div class="visual-panel">
+          <div class="media-frame">
+            <img src="images/18.png" alt="Material backplate examples">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide feature-slide compact-title" id="api-volume-window">
+      <h1>3. Volumetric Window</h1>
+      <div class="feature-layout">
+        <div class="feature-copy">
+          <p class="lead">
+            A web page window can change its behavior in space from something
+            optimized for 2D GUI needs into something that behaves like a real
+            object, giving the window the physical depth and volume of a box.
+          </p>
+        </div>
+        <div class="visual-panel">
+          <div class="media-frame">
+            <img src="images/19.png" alt="Volume window in WebSpatial">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide feature-slide compact-title" id="api-spatial-html-elements">
+      <h1>4. Spatialized HTML Elements</h1>
+      <div class="feature-layout">
+        <div class="feature-copy">
+          <p class="lead">
+            HTML elements can be lifted into the 3D space in front of the page
+            plane while still participating in the CSS layout system.
+          </p>
+          <p>
+            These spatialized HTML elements keep their original state and APIs
+            on the x and y axes, while also becoming 2D surfaces floating in a
+            spatial scene. CSS can place and position them along the z axis and
+            transform them in 3D space. DOM APIs can read related state, and
+            they can have material backplates.
+          </p>
+        </div>
+        <div class="visual-panel">
+          <div class="media-frame">
+            <img src="images/20.png" alt="Spatialized HTML elements">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide feature-slide compact-title" id="api-3d-container-elements">
+      <h1>5. 3D Container Elements</h1>
+      <div class="feature-layout">
+        <div class="feature-copy">
+          <p class="lead">
+            Two new 3D HTML elements are introduced as containers for 3D
+            content with real volume.
+          </p>
+          <p>
+            These 3D container elements still participate in CSS layout as 2D
+            surfaces and support z-axis layout and transforms. On top of that,
+            they can establish a local space in front of the 2D surface based
+            on a 3D development model, render 3D content with real volume
+            inside it, and integrate that content into 2D layout systems and
+            2D GUI frameworks, enabling the "2D containing 3D" paradigm.
+          </p>
+        </div>
+        <div class="visual-panel">
+          <div class="media-frame">
+            <img src="images/21.png" alt="Dynamic 3D container elements">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide feature-slide compact-title" id="api-static-3d-container-elements">
+      <h1>6. Static 3D Container Elements</h1>
+      <div class="feature-layout">
+        <div class="feature-copy">
+          <p class="lead">
+            These containers support rendering 3D content from prebuilt 3D
+            model assets, and their API is fully based on the web-standard
+            model element.
+          </p>
+        </div>
+        <div class="visual-panel">
+          <div class="media-frame">
+            <img src="images/22.png" alt="Static 3D container elements">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide feature-slide compact-title" id="api-dynamic-3d-container-elements">
+      <h1>7. Dynamic 3D Container Elements</h1>
+      <div class="feature-layout">
+        <div class="feature-copy">
+          <p class="lead">
+            These containers support dynamically rendering 3D content through a
+            programmable, HTML-style 3D engine API.
+          </p>
+        </div>
+        <div class="visual-panel">
+          <div class="media-frame">
+            <img src="images/23.png" alt="Dynamic 3D container elements">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide statement-slide compact-title" id="api-html-style-3d-engine">
+      <h1>8. HTML-style 3D Engine API</h1>
+      <div class="statement-panel">
+        <p>
+          These APIs cover 3D asset declarations such as models and materials,
+          built-in capability modules, and ready-to-use 3D entities such as
+          primitive geometry.
+        </p>
+      </div>
+      <div class="support-grid small-copy">
+        <div class="card">
+          <h3>Tree-shaped composition</h3>
+          <p>You can freely compose those entities in 3D coordinates through tree structure and Transform properties to build arbitrary 3D scenes and animation effects.</p>
+        </div>
+        <div class="card">
+          <h3>2D content in 3D</h3>
+          <p>You can also attach 2D HTML content to flat 3D entities, allowing fully functional 2D content to be embedded inside 3D scenes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide statement-slide compact-title statement-only" id="api-spatial-interaction">
+      <h1>9. Spatial Interaction</h1>
+      <div class="statement-panel statement-large">
+        <p>
+          New spatial interaction events, such as click, drag, and rotate, can
+          be triggered on the 2D surfaces corresponding to spatialized HTML
+          elements and on 3D content inside 3D containers, including mesh
+          surfaces and bounding boxes. These events expose interaction data in
+          3D space, such as positions in a 3D coordinate system.
+        </p>
+      </div>
+    </section>
+
+    <section class="slide statement-slide compact-title statement-only" id="api-mixed-2d-3d-content">
+      <h1>10. Mixed 2D + 3D Content</h1>
+      <div class="statement-panel statement-large">
+        <p>
+          2D content based on CSS layout and dynamic 3D container content based
+          on the 3D engine can be aligned and linked together through APIs for
+          coordinate conversion, unit conversion, and related integration
+          mechanisms.
+        </p>
+      </div>
+    </section>
+
+    <section class="slide cover section clear-number chapter-slide" id="webspatial-sdk">
+      <h1>WebSpatial SDK</h1>
+    </section>
+
+    <section class="slide statement-slide compact-title statement-only" id="sdk-forward-implementation">
+      <h1>1. Forward-Looking Pre-Implementation</h1>
+      <div class="statement-panel statement-large">
+        <p>
+          With help from the native runtime, the proposed HTML, DOM, and CSS
+          APIs are simulated in advance inside JSX, refs, and CSS in React
+          projects, so WebSpatial APIs are usable immediately without waiting
+          for official support in browser engines across platforms.
+        </p>
+      </div>
+    </section>
+
+    <section class="slide statement-slide compact-title statement-only" id="sdk-version-compatibility">
+      <h1>2. Cross-Version Compatibility</h1>
+      <div class="statement-panel statement-large">
+        <p>
+          The SDK hides instability, change, and platform differences while
+          WebSpatial APIs move through the web standardization process across
+          HTML, CSS, and DOM, and keeps the SDK-facing APIs backward compatible
+          so older code continues to run.
+        </p>
+      </div>
+    </section>
+
+    <section class="slide statement-slide compact-title statement-only" id="sdk-cross-platform">
+      <h1>3. Cross-Platform Compatibility</h1>
+      <div class="statement-panel statement-large">
+        <p>
+          On platforms that do not support spatial computing and unified
+          rendering, WebSpatial APIs are automatically ignored and the full SDK
+          implementation is not loaded, so the page's behavior and performance
+          on desktop browsers, mobile browsers, and other screen-based devices
+          remain unaffected.
+        </p>
+      </div>
+    </section>
+
+    <section class="slide statement-slide compact-title statement-only" id="sdk-custom-cross-platform">
+      <h1>4. Custom Cross-Platform Logic</h1>
+      <div class="statement-panel statement-large">
+        <p>
+          The SDK provides feature detection and runtime detection so developers
+          can handle the small set of JavaScript and DOM API calls that cannot
+          be ignored automatically, and also enable custom enhancements and
+          platform-specific functionality on spatial computing platforms.
+        </p>
+      </div>
+    </section>
+
+    <section class="slide statement-slide compact-title statement-only" id="sdk-app-packaging">
+      <h1>5. App Packaging</h1>
+      <div class="statement-panel statement-large">
+        <p>
+          PWAs can be packaged into native app bundles that include WebSpatial
+          Runtime and have no external dependency, for example as a visionOS
+          app. Those bundles can be installed, run, and debugged on simulators
+          or real devices just like native apps, and can be published to app
+          stores such as the visionOS App Store.
+        </p>
+      </div>
+    </section>
+
+    <section class="slide feature-slide long-title" id="webspatial-philosophy">
+      <h1>WebSpatial Philosophy</h1>
+      <div class="feature-layout">
+        <div class="feature-copy philosophy-list">
+          <div class="principle">
+            <p>
+              1. The SDK should integrate into existing standard web projects
+              at as low a cost as possible, ideally close to one-click setup,
+              without changing the project's existing development workflow,
+              build pipeline, or deployment model, and without affecting the
+              site's current behavior, performance, or debugging experience on
+              desktop, mobile, and ordinary browsers.
+            </p>
+          </div>
+          <div class="principle">
+            <p>
+              2. With the WebSpatial API and SDK, building a brand-new spatial
+              app should feel the same as building a normal website. If
+              developers want, that app should still be distributable as a
+              standard website, preserving the web's original cross-platform
+              reach and URL-based usage model.
+            </p>
+          </div>
+        </div>
+        <div class="visual-panel">
+          <div class="media-frame">
+            <img src="images/100.png" alt="WebSpatial philosophy diagram">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide compact-title community-slide" id="community">
+      <h1>Community</h1>
+      <div class="qr-grid">
+        <div class="card qr-card">
+          <img src="images/wechat-group.png" alt="WeChat group QR code">
+          <p>WeChat Group</p>
+        </div>
+        <div class="card qr-card">
+          <img src="images/wechat-news.jpeg" alt="WeChat official account QR code">
+          <p>WeChat Official Account</p>
+        </div>
+        <div class="card qr-card">
+          <img src="images/website.jpg" alt="Open source website QR code">
+          <p>Open Source Website</p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
