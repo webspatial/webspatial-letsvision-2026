@@ -274,7 +274,7 @@ li::marker {
   width: min(100%, var(--slide-width));
   min-height: var(--slide-height);
   margin: 0 2.25rem 2.25rem 0;
-  padding: 3rem 3.4rem 2.7rem;
+  padding: 2.15rem 2.35rem 1.95rem;
   vertical-align: top;
   overflow: hidden;
   color: var(--text);
@@ -305,8 +305,8 @@ li::marker {
 .slide::after {
   content: counter(slide, decimal-leading-zero);
   position: absolute;
-  right: 2rem;
-  bottom: 1.6rem;
+  right: 1.45rem;
+  bottom: 1.1rem;
   color: rgba(255, 179, 128, 0.82);
   letter-spacing: 0.14em;
   font-size: 0.76rem;
