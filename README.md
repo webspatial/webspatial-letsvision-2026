@@ -64,8 +64,6 @@ Then open:
 
 - `http://localhost:4173/`
 - `http://localhost:4173/index-cn.html`
-- `http://localhost:4173/?full`
-- `http://localhost:4173/index-cn.html?full`
 
 ## Editing Workflow
 
