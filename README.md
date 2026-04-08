@@ -65,6 +65,32 @@ Then open:
 - `http://localhost:4173/`
 - `http://localhost:4173/index-cn.html`
 
+## Build For Static Hosting
+
+Generate a clean static output directory:
+
+```bash
+pnpm run build
+```
+
+This writes the deployable site to `dist/` and copies only the files needed for
+hosting:
+
+- `dist/index.html`
+- `dist/index-cn.html`
+- `dist/assets`
+
+## Cloudflare Deployment
+
+This repository should be deployed as a static site with `dist/` as the output
+directory.
+
+Recommended Cloudflare Pages settings:
+
+- Build command: `node scripts/build-static.mjs`
+- Build output directory: `dist`
+- Do not use `npx wrangler deploy` as the Pages deploy command
+
 ## Editing Workflow
 
 - Edit `index.html` and `index-cn.html` when updating the rendered slide decks.

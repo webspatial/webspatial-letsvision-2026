@@ -2,6 +2,7 @@
   "name": "letsvision2026-webspatial-slides",
   "private": true,
   "scripts": {
+    "build": "node scripts/build-static.mjs",
     "optimize:images": "bun run scripts/optimize-images.mjs",
     "dev": "bun run server.ts",
     "serve": "bun run server.ts"
