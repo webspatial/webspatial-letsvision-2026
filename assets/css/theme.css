@@ -323,6 +323,10 @@ li::marker {
   margin-bottom: 0;
 }
 
+.print-deck-url {
+  display: none;
+}
+
 .eyebrow {
   font-size: 0.78rem;
   letter-spacing: 0.16em;
@@ -1240,6 +1244,10 @@ body.darkmode .stat {
     print-color-adjust: exact;
   }
 
+  .has-print-deck-url {
+    padding-bottom: 3.35rem;
+  }
+
   .slide {
     display: flex;
     width: 10in;
@@ -1273,6 +1281,29 @@ body.darkmode .stat {
     border: 0;
     page-break-before: always;
     break-before: page;
+  }
+
+  .print-deck-url {
+    display: block;
+    position: absolute;
+    left: 2.35rem;
+    right: 2.35rem;
+    bottom: 1rem;
+    margin: 0;
+    color: rgba(237, 244, 255, 0.82);
+    font-size: 0.78rem;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+    overflow-wrap: anywhere;
+  }
+
+  .print-deck-url a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .qr-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .comment,
