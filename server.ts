@@ -1,5 +1,5 @@
 import { stat } from "node:fs/promises";
-import { join, resolve, sep } from "node:path";
+import { extname, join, resolve, sep } from "node:path";
 
 const rootDir = process.cwd();
 const rootPrefix = rootDir.endsWith(sep) ? rootDir : `${rootDir}${sep}`;
@@ -45,6 +45,29 @@ async function resolveFile(pathname: string) {
   }
 }
 
+function getCacheControl(filePath: string) {
+  const extension = extname(filePath).toLowerCase();
+
+  if (extension === ".html") {
+    return "no-cache";
+  }
+
+  if (
+    extension === ".css" ||
+    extension === ".js" ||
+    extension === ".avif" ||
+    extension === ".webp" ||
+    extension === ".png" ||
+    extension === ".jpg" ||
+    extension === ".jpeg" ||
+    extension === ".mp4"
+  ) {
+    return "public, max-age=604800, stale-while-revalidate=86400";
+  }
+
+  return "public, max-age=3600";
+}
+
 const server = Bun.serve({
   port,
   async fetch(request) {
@@ -64,7 +87,7 @@ const server = Bun.serve({
 
     const file = Bun.file(resolved.filePath);
     const headers = new Headers({
-      "Cache-Control": "no-cache",
+      "Cache-Control": getCacheControl(resolved.filePath),
       "Content-Length": String(resolved.fileStat.size),
     });
 

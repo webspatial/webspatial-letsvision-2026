@@ -1,30 +1,58 @@
-# b6plus slide repo
+# Let's Vision 2026 | WebSpatial Talk Slides
 
-Minimal static slide repo for technical talks, built on the W3C `b6plus`
-presentation script:
+> WebSpatial: Building visionOS Spatial Apps with HTML/CSS Like SwiftUI + RealityKit
 
-https://www.w3.org/Talks/Tools/b6plus/
+This repository contains the slide deck for a talk presented at Let's Vision 2026.
+It should be read as the home page for the talk project first, and only secondarily
+as a lightweight `b6plus`-based slide repo.
 
-The goal is simple:
+- Speaker: Dexter Yang (Yang Yang)
+- Organization: ByteDance
+- Role: Creator of the Open Source WebSpatial Project
+- Event: Let's Vision 2026
+- Location: Shanghai
 
-- keep the toolchain close to zero
-- keep the visual system quiet and content-first
-- keep enough structure to write technical talks quickly
+## What This Talk Is About
 
-## Structure
+This talk focuses on a simple claim:
+
+The web on visionOS has already gained important new capabilities, but it still
+does not offer the same spatial application paradigm that native visionOS
+development gets from `SwiftUI + RealityKit`.
+
+The presentation uses WebSpatial as the concrete example for how HTML, CSS, and
+DOM-based development can evolve toward spatial computing without abandoning the
+existing web ecosystem.
+
+Main sections:
+
+- Background
+- Make the Web Spatial Too
+- WebSpatial Features
+- WebSpatial Philosophy
+
+## Repository Contents
 
 - `index.html`
-  - the default working deck
-- `talks/template/index.html`
-  - a clean starter file for new talks
-- `assets/b6plus.js`
-  - vendored W3C presentation script
+  - main deck entry
+- `index-cn.html`
+  - Chinese deck variant
+- `slides.md`
+  - slide-by-slide outline, content draft, and speaker notes
+- `assets/images`
+  - optimized image assets used by the deck
+- `assets/media`
+  - embedded demo videos
 - `assets/css/theme.css`
-  - shared minimal theme
+  - presentation theme
+- `assets/b6plus.js`
+  - vendored W3C `b6plus` runtime
+- `server.ts`
+  - local static preview server built with `Bun.serve`
+- `docs/b6plus`
+  - repo-local reference material for `b6plus`
 
-## Quick start
-
-Use Bun as the local static server:
+## Local Preview
 
 Requires Bun to be installed locally.
 
@@ -35,60 +63,34 @@ bun run dev
 Then open:
 
 - `http://localhost:4173/`
+- `http://localhost:4173/index-cn.html`
 - `http://localhost:4173/?full`
-- `http://localhost:4173/talks/template/?full`
+- `http://localhost:4173/index-cn.html?full`
 
-The local server entry point is `server.ts`, built with `Bun.serve` so the
-repo no longer depends on Python for previewing slides.
+## Editing Workflow
 
-## Writing workflow
+- Edit `index.html` and `index-cn.html` when updating the rendered slide decks.
+- Edit `slides.md` when refining the talk structure, page copy, or speaker notes.
+- Update source images under `images/`, then run `bun run optimize:images` to
+  regenerate `assets/images` when slide visuals change.
 
-1. Edit `index.html` if you want one active deck in the repo.
-2. Copy `talks/template/index.html` into a new folder under `talks/` for a new talk.
-3. Keep each slide to one idea.
-4. Use speaker notes with a direct child element of class `comment`.
-5. Use `class="incremental"` or `class="next"` only when sequence matters.
+`optimize:images` depends on local `magick` and `cwebp` binaries.
 
-## Keyboard shortcuts
+## Tech Notes
 
-- `A`: toggle index mode and slide mode
-- `Space`, `Right`, `Down`: next slide
-- `Left`, `Up`: previous slide
-- `2`: open second screen
-- `D`: toggle dark mode
-- `?`: show command help
+This repo intentionally stays close to zero build tooling:
 
-## Style notes
+- static HTML slides
+- local vendored `b6plus`
+- Bun-based preview server
+- pre-optimized image assets with AVIF/WebP/fallback outputs
 
-This theme is intentionally quiet:
+`b6plus` is the presentation runtime, not the subject of the project. The
+subject of the project is the Let's Vision 2026 talk and its WebSpatial-focused
+content.
 
-- wide margins
-- strong type hierarchy
-- black-first background
-- orange-first theme with purple support
-- no decorative sidebars or logos
+## Reference
 
-Color semantics:
+Official `b6plus` page:
 
-- orange is reserved for page titles and the primary visual identity
-- purple is reserved for links, code, and secondary technical emphasis
-- rose is reserved for critical or cautionary emphasis
-- body copy stays neutral unless it needs emphasis
-
-It is meant for engineering talks where diagrams, code, and metrics should
-carry the presentation.
-
-## Source
-
-`assets/b6plus.js` is downloaded from the W3C `b6plus` page and kept local so
-the repo can be edited and presented without depending on an external script.
-
-## Local docs
-
-For a repo-local Markdown reference derived from the official W3C `b6plus`
-documentation, see:
-
-- `docs/b6plus/README.md`
-- `docs/b6plus/official-guide.zh-CN.md`
-- `docs/b6plus/feature-reference.zh-CN.md`
-- `docs/b6plus/theme-authoring.zh-CN.md`
+- https://www.w3.org/Talks/Tools/b6plus/

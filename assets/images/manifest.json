@@ -1,0 +1,578 @@
+{
+  "01.png": {
+    "fileName": "01.png",
+    "width": 1536,
+    "height": 922,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/01.png"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/01.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/01.webp"
+      }
+    ],
+    "inputBytes": 2054635,
+    "outputBytes": 450754
+  },
+  "02.png": {
+    "fileName": "02.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/02.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/02.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/02.webp"
+      }
+    ],
+    "inputBytes": 6499957,
+    "outputBytes": 492036
+  },
+  "03.png": {
+    "fileName": "03.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/03.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/03.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/03.webp"
+      }
+    ],
+    "inputBytes": 7746073,
+    "outputBytes": 592307
+  },
+  "04.png": {
+    "fileName": "04.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/04.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/04.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/04.webp"
+      }
+    ],
+    "inputBytes": 6278823,
+    "outputBytes": 445140
+  },
+  "05.png": {
+    "fileName": "05.png",
+    "width": 1920,
+    "height": 1072,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/05.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/05.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/05.webp"
+      }
+    ],
+    "inputBytes": 7615143,
+    "outputBytes": 399759
+  },
+  "06.png": {
+    "fileName": "06.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/06.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/06.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/06.webp"
+      }
+    ],
+    "inputBytes": 8486862,
+    "outputBytes": 935134
+  },
+  "07.png": {
+    "fileName": "07.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/07.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/07.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/07.webp"
+      }
+    ],
+    "inputBytes": 7332124,
+    "outputBytes": 654532
+  },
+  "08.png": {
+    "fileName": "08.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/08.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/08.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/08.webp"
+      }
+    ],
+    "inputBytes": 6877454,
+    "outputBytes": 438174
+  },
+  "09.png": {
+    "fileName": "09.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/09.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/09.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/09.webp"
+      }
+    ],
+    "inputBytes": 6997889,
+    "outputBytes": 579263
+  },
+  "10.png": {
+    "fileName": "10.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/10.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/10.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/10.webp"
+      }
+    ],
+    "inputBytes": 7617854,
+    "outputBytes": 639473
+  },
+  "100.png": {
+    "fileName": "100.png",
+    "width": 645,
+    "height": 941,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/100.png"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/100.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/100.webp"
+      }
+    ],
+    "inputBytes": 427461,
+    "outputBytes": 139568
+  },
+  "11.png": {
+    "fileName": "11.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/11.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/11.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/11.webp"
+      }
+    ],
+    "inputBytes": 6607703,
+    "outputBytes": 424842
+  },
+  "12.png": {
+    "fileName": "12.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/12.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/12.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/12.webp"
+      }
+    ],
+    "inputBytes": 7602601,
+    "outputBytes": 797117
+  },
+  "13.png": {
+    "fileName": "13.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/13.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/13.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/13.webp"
+      }
+    ],
+    "inputBytes": 6483265,
+    "outputBytes": 533303
+  },
+  "14.png": {
+    "fileName": "14.png",
+    "width": 1920,
+    "height": 1047,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/14.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/14.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/14.webp"
+      }
+    ],
+    "inputBytes": 7336666,
+    "outputBytes": 622662
+  },
+  "15.png": {
+    "fileName": "15.png",
+    "width": 1920,
+    "height": 1046,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/15.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/15.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/15.webp"
+      }
+    ],
+    "inputBytes": 7448780,
+    "outputBytes": 675600
+  },
+  "16.png": {
+    "fileName": "16.png",
+    "width": 1920,
+    "height": 1094,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/16.png"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/16.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/16.webp"
+      }
+    ],
+    "inputBytes": 6055720,
+    "outputBytes": 726314
+  },
+  "17.png": {
+    "fileName": "17.png",
+    "width": 1511,
+    "height": 1253,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/17.png"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/17.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/17.webp"
+      }
+    ],
+    "inputBytes": 3001839,
+    "outputBytes": 633807
+  },
+  "18.png": {
+    "fileName": "18.png",
+    "width": 1722,
+    "height": 1920,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/18.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/18.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/18.webp"
+      }
+    ],
+    "inputBytes": 5517002,
+    "outputBytes": 428087
+  },
+  "19.png": {
+    "fileName": "19.png",
+    "width": 1856,
+    "height": 1258,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/19.png"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/19.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/19.webp"
+      }
+    ],
+    "inputBytes": 3813991,
+    "outputBytes": 938096
+  },
+  "20.png": {
+    "fileName": "20.png",
+    "width": 1339,
+    "height": 1920,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/20.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/20.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/20.webp"
+      }
+    ],
+    "inputBytes": 5528015,
+    "outputBytes": 615373
+  },
+  "21.png": {
+    "fileName": "21.png",
+    "width": 1356,
+    "height": 1536,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/21.png"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/21.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/21.webp"
+      }
+    ],
+    "inputBytes": 3431792,
+    "outputBytes": 765156
+  },
+  "22.png": {
+    "fileName": "22.png",
+    "width": 1352,
+    "height": 1536,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/22.png"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/22.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/22.webp"
+      }
+    ],
+    "inputBytes": 3682664,
+    "outputBytes": 911291
+  },
+  "23.png": {
+    "fileName": "23.png",
+    "width": 1446,
+    "height": 1024,
+    "fallback": {
+      "type": "image/jpeg",
+      "path": "assets/images/23.jpg"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/23.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/23.webp"
+      }
+    ],
+    "inputBytes": 2385260,
+    "outputBytes": 441863
+  },
+  "real-apps.png": {
+    "fileName": "real-apps.png",
+    "width": 1920,
+    "height": 911,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/real-apps.png"
+    },
+    "sources": [
+      {
+        "type": "image/avif",
+        "path": "assets/images/real-apps.avif"
+      },
+      {
+        "type": "image/webp",
+        "path": "assets/images/real-apps.webp"
+      }
+    ],
+    "inputBytes": 2350436,
+    "outputBytes": 461583
+  },
+  "website.jpg": {
+    "fileName": "website.jpg",
+    "width": 660,
+    "height": 660,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/website.png"
+    },
+    "sources": [
+      {
+        "type": "image/webp",
+        "path": "assets/images/website.webp"
+      }
+    ],
+    "inputBytes": 27366,
+    "outputBytes": 37090
+  },
+  "wechat-group.png": {
+    "fileName": "wechat-group.png",
+    "width": 720,
+    "height": 717,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/wechat-group.png"
+    },
+    "sources": [
+      {
+        "type": "image/webp",
+        "path": "assets/images/wechat-group.webp"
+      }
+    ],
+    "inputBytes": 706869,
+    "outputBytes": 294092
+  },
+  "wechat-news.jpeg": {
+    "fileName": "wechat-news.jpeg",
+    "width": 720,
+    "height": 720,
+    "fallback": {
+      "type": "image/png",
+      "path": "assets/images/wechat-news.png"
+    },
+    "sources": [
+      {
+        "type": "image/webp",
+        "path": "assets/images/wechat-news.webp"
+      }
+    ],
+    "inputBytes": 103134,
+    "outputBytes": 175732
+  }
+}

@@ -272,7 +272,8 @@ li::marker {
   flex-direction: column;
   gap: 1.35rem;
   width: min(100%, var(--slide-width));
-  min-height: var(--slide-height);
+  /* b6plus textfit/autosize only work reliably when slides have a fixed height. */
+  height: var(--slide-height);
   margin: 0 2.25rem 2.25rem 0;
   padding: 2.15rem 2.35rem 1.95rem;
   vertical-align: top;
@@ -558,6 +559,77 @@ li::marker {
 .comment li {
   font-size: 1rem;
   color: inherit;
+}
+
+body.has-2nd-window .slide,
+body.has-2nd-window .comment {
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+body.has-2nd-window .slide,
+body.has-2nd-window .comment {
+  opacity: 0.34;
+  filter: saturate(0.7);
+}
+
+body.has-2nd-window .slide.active,
+body.has-2nd-window .slide.active + .comment,
+body.has-2nd-window .slide.active + .slide,
+body.has-2nd-window .slide.active + .comment + .slide {
+  opacity: 1;
+  filter: none;
+}
+
+body.has-2nd-window .slide.active,
+body.has-2nd-window .slide.active + .comment,
+body.has-2nd-window .slide.active + .slide,
+body.has-2nd-window .slide.active + .comment + .slide {
+  scroll-margin-top: 6rem;
+}
+
+body.has-2nd-window .slide.active {
+  border-color: rgba(255, 102, 0, 0.34);
+  box-shadow:
+    0 1.4rem 3rem rgba(0, 0, 0, 0.36),
+    0 0 0 1px rgba(255, 102, 0, 0.16),
+    inset 0 0 0 1px rgba(255, 102, 0, 0.1);
+}
+
+body.has-2nd-window .slide.active + .comment {
+  border-color: rgba(255, 102, 0, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 102, 0, 0.08), rgba(255, 102, 0, 0)),
+    var(--surface-note);
+  box-shadow:
+    0 1rem 2.2rem rgba(0, 0, 0, 0.24),
+    inset 0 0 0 1px rgba(255, 102, 0, 0.06);
+}
+
+body.has-2nd-window .slide.active + .slide,
+body.has-2nd-window .slide.active + .comment + .slide {
+  border-color: rgba(92, 60, 255, 0.28);
+  box-shadow:
+    0 1rem 2.2rem rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(92, 60, 255, 0.08);
+}
+
+body.has-2nd-window .b6-ui {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+body.has-2nd-window .b6-secondwindowbutton {
+  background:
+    linear-gradient(135deg, rgba(255, 102, 0, 0.2), rgba(92, 60, 255, 0.2)),
+    rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
 }
 
 .progress {
@@ -1024,6 +1096,7 @@ li::marker {
   gap: 1rem;
   flex: 1 1 auto;
   min-height: 0;
+  align-content: center;
 }
 
 .qr-card {
@@ -1036,13 +1109,19 @@ li::marker {
   padding: 1.15rem 1rem;
 }
 
+.qr-card picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .qr-card img {
   display: block;
   width: 100%;
   max-width: 14rem;
-  aspect-ratio: 1 / 1;
+  height: auto;
   object-fit: contain;
-  padding: 0.55rem;
   border-radius: 1rem;
   background: #ffffff;
 }

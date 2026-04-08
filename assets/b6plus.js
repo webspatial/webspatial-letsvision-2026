@@ -1172,6 +1172,26 @@ function autosize()
 }
 
 
+/* watchAutosizeImages -- re-run slide layout when autosized images load later */
+function watchAutosizeImages()
+{
+  function relayoutSlideForImage(event)
+  {
+    const slide = event.target.closest('.slide');
+    if (! slide) return;
+    scaleImagesIfNeeded(slide);
+    scaleFontIfNeeded(slide);
+    if (slidemode && slide === curslide) scaleBody();
+  }
+
+  for (const img of document.querySelectorAll('img.autosize')) {
+    if (img.b6autosizeWatched) continue;
+    img.b6autosizeWatched = true;
+    img.addEventListener('load', relayoutSlideForImage, false);
+  }
+}
+
+
 /* instrumentVideos -- add event handlers to all video and audio elements */
 function instrumentVideos()
 {
@@ -3673,6 +3693,7 @@ function initializeLayout()
   // that second call should be quick.
   autosize();			// Maybe shrink images with class=autosize
   textFit();			// Maybe shrink font on slides w/ class=textfit
+  watchAutosizeImages();	// Re-layout slides if images load after this point
 }
 
 

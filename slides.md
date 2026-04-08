@@ -188,11 +188,11 @@ XR 透视视图正在取代地址栏。
 ## Make the Web Spatial Too
 
 以下视频和图片，每页一个：
-![](video/app2.MP4)
-![](video/app1.MP4)
-![](video/demo-app1.mp4)
-![](video/demo-game1.mp4)
-![](video/demo-game2.mp4)
+![](assets/media/app2.mp4)
+![](assets/media/app1.mp4)
+![](assets/media/demo-app1.mp4)
+![](assets/media/demo-game1.mp4)
+![](assets/media/demo-game2.mp4)
 ![](images/real-apps.png)
 
 ### WebSpatial 是什么
