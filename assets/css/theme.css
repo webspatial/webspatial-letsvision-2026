@@ -1222,16 +1222,57 @@ body.darkmode .stat {
 }
 
 @media print {
+  @page {
+    size: landscape;
+    /* 60rem x 33.75rem at the default 16px root font size = 10in x 5.625in. */
+    size: 10in 5.625in;
+    margin: 0;
+  }
+
+  html,
   body {
     margin: 0;
-    background: #ffffff;
+    background: transparent;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .slide {
+    display: flex;
+    width: 10in;
+    max-width: none;
+    height: 5.625in;
+    min-height: 0;
     margin: 0;
     border-radius: 0;
     box-shadow: none;
+    page-break-after: always;
     break-after: page;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .slide + .slide {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .print-page-break {
+    display: block;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    page-break-before: always;
+    break-before: page;
   }
 
   .comment,

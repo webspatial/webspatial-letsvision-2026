@@ -75,7 +75,7 @@ Then open:
 Generate a clean static output directory:
 
 ```bash
-pnpm run build
+bun run build
 ```
 
 This writes the deployable site to `dist/` and copies only the files needed for

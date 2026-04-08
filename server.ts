@@ -48,13 +48,15 @@ async function resolveFile(pathname: string) {
 function getCacheControl(filePath: string) {
   const extension = extname(filePath).toLowerCase();
 
-  if (extension === ".html") {
+  if (
+    extension === ".html" ||
+    extension === ".css" ||
+    extension === ".js"
+  ) {
     return "no-cache";
   }
 
   if (
-    extension === ".css" ||
-    extension === ".js" ||
     extension === ".avif" ||
     extension === ".webp" ||
     extension === ".png" ||
