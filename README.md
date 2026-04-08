@@ -12,6 +12,11 @@ as a lightweight `b6plus`-based slide repo.
 - Event: Let's Vision 2026
 - Location: Shanghai
 
+## Live URLs
+
+- [English](https://letsvision2026.webspatial.dev)
+- [Chinese](https://letsvision2026.webspatial.dev/cn)
+
 ## What This Talk Is About
 
 This talk focuses on a simple claim:
@@ -77,19 +82,8 @@ This writes the deployable site to `dist/` and copies only the files needed for
 hosting:
 
 - `dist/index.html`
-- `dist/index-cn.html`
+- `dist/cn/index.html`
 - `dist/assets`
-
-## Cloudflare Deployment
-
-This repository should be deployed as a static site with `dist/` as the output
-directory.
-
-Recommended Cloudflare Pages settings:
-
-- Build command: `node scripts/build-static.mjs`
-- Build output directory: `dist`
-- Do not use `npx wrangler deploy` as the Pages deploy command
 
 ## Editing Workflow
 
